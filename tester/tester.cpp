@@ -34,10 +34,10 @@ void Tester::testMatrix(unsigned int rows, unsigned int columns) {
         }
     }
 
-    result = test1 - test2;
+    Matrix<T> result2 = test1 - test2;
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
-            ASSERT(result(i, j) == matrix1[i][j] - matrix2[i][j], "There is a problem with the subtraction");
+            ASSERT(result2(i, j) == matrix1[i][j] - matrix2[i][j], "There is a problem with the subtraction");
         }
     }
 }
