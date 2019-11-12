@@ -31,6 +31,10 @@ private:
         }
         return false;
     }
+    void deleteAll(Node<T>* node){
+        if(node->next) deleteAll(node->next);
+        delete node;
+    }
 
 public:
     Matrix(unsigned rows, unsigned columns);
@@ -228,7 +232,7 @@ void Matrix<T>::print(){
 template <typename T>
 Matrix<T>::~Matrix(){
     for(int i=0;i<rows;++i){
-        if(x[i]) x[i]->killSelf();
+        deleteAll(x[i]);
     }
 }
 
