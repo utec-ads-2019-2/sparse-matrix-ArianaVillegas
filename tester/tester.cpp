@@ -6,7 +6,7 @@ void Tester::execute() {
     for (int i = 0; i < NUMBER_OF_TESTS; ++i) {
         unsigned int rows = mocker.generateRandomInt(10);
         unsigned int columns = mocker.generateRandomInt(10);
-        testMatrix<int>(rows, columns);
+        testMatrix<int>(3,3/*rows, columns*/);
     }
 }
 

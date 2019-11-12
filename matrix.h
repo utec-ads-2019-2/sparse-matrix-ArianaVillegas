@@ -230,8 +230,6 @@ Matrix<T>::~Matrix(){
     for(int i=0;i<rows;++i){
         if(x[i]) x[i]->killSelf();
     }
-    delete [] x;
-    delete [] y;
 }
 
 #endif //SPARSE_MATRIX_MATRIX_H
