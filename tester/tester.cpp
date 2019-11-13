@@ -27,17 +27,17 @@ void Tester::testMatrix(unsigned int rows, unsigned int columns) {
 
     int **matrix2 = buildMatrix<T>(rows, columns);
     Matrix<T> test2 = setMatrix<T>(matrix2, rows, columns);
-    Matrix<T> result1 = test1 + test2;
+    result = test1 + test2;
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
-            ASSERT(result1(i, j) == matrix1[i][j] + matrix2[i][j], "There is a problem with the addition");
+            ASSERT(result(i, j) == matrix1[i][j] + matrix2[i][j], "There is a problem with the addition");
         }
     }
 
-    Matrix<T> result2 = test1 - test2;
+    result = test1 - test2;
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
-            ASSERT(result2(i, j) == matrix1[i][j] - matrix2[i][j], "There is a problem with the subtraction");
+            ASSERT(result(i, j) == matrix1[i][j] - matrix2[i][j], "There is a problem with the subtraction");
         }
     }
 }

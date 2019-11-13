@@ -38,6 +38,7 @@ private:
 
 public:
     Matrix(unsigned rows, unsigned columns);
+    Matrix(const Matrix<T>& other);
 
     void set(unsigned, unsigned, T);
     T operator()(unsigned, unsigned) const;
@@ -45,7 +46,7 @@ public:
     Matrix<T> operator*(const Matrix<T> &other) const;
     Matrix<T> operator+(const Matrix<T> &other) const;
     Matrix<T> operator-(const Matrix<T> &other) const;
-    Matrix<T> operator=(const Matrix<T> &other);
+    Matrix<T>& operator=(const Matrix<T> &other);
     Matrix<T> transpose() const;
     void print();
 
@@ -57,6 +58,18 @@ template <typename T>
 Matrix<T>::Matrix(unsigned rows, unsigned columns):rows(rows),columns(columns){
     x = new Node<T>*[rows];
     y = new Node<T>*[columns];
+}
+
+
+template <typename T>
+Matrix<T>::Matrix(const Matrix<T>& other):rows(other.rows),columns(other.columns){
+    x = new Node<T>*[other.rows];
+    y = new Node<T>*[other.columns];
+    for(int i=0;i<other.rows;++i){
+        for(int j=0;j<other.columns;++j){
+            this->set(i,j,other(i,j));
+        }
+    }
 }
 
 
@@ -187,15 +200,13 @@ Matrix<T> Matrix<T>::operator-(const Matrix<T> &other) const{
 
 
 template <typename T>
-Matrix<T> Matrix<T>::operator=(const Matrix<T> &other){
+Matrix<T>& Matrix<T>::operator=(const Matrix<T> &other){
     for(int i=0;i<other.rows;++i){
-        auto px = other.x[i];
-        while(px){
-            set(px->y,px->x,px->data);
-            px = px->next;
+        for(int j=0;j<other.columns;++j){
+            this->set(i,j,other(i,j));
         }
     }
-    return (*this);
+    return *this;
 }
 
 
