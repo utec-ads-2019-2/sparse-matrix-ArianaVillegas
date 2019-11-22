@@ -103,6 +103,8 @@ T Matrix<T>::operator()(unsigned r, unsigned c) const{
         if(findy(c,temp)) return (*temp)->data;
         return 0;
     }
+
+    // Falta un return para estos casos, lo ideal sería un throw
 }
 
 
